@@ -13,16 +13,23 @@ app.use(bodyParser.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieSession],
+    keys: [keys.cookieKey],
   })
 );
 
 // Connect mongoose
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // Configure passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+require('./services/authStrategy')(passport);
+
+require('./routes/auth')(app);
 
 // Serve static files for react app in production
 if (process.env.NODE_ENV === 'production') {

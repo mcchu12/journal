@@ -1,6 +1,9 @@
 import React from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import { withFormik } from 'formik';
-import { Link } from 'react-router-dom';
+
+import { signUp } from '../actions';
 
 import {
   makeStyles,
@@ -67,7 +70,7 @@ const SignUp = ({ values, handleChange, handleSubmit }) => {
       alignItems="center"
     >
       <Container maxWidth="xs">
-        <Typography variant="h4" align="center">
+        <Typography variant="h5" align="center">
           Sign Up
         </Typography>
         {renderForm()}
@@ -76,13 +79,16 @@ const SignUp = ({ values, handleChange, handleSubmit }) => {
   );
 };
 
-export default withFormik({
-  mapPropsToValues: () => ({ email: '', password: '' }),
-  handleSubmit: (values, form) => {
-    console.log(values);
-    form.setSubmitting(false);
-  },
-})(SignUp);
+export default compose(
+  connect(null, { signUp }),
+  withFormik({
+    mapPropsToValues: () => ({ name: '', email: '', password: '' }),
+    handleSubmit: (values, form) => {
+      form.props.signUp(values);
+      form.setSubmitting(false);
+    },
+  })
+)(SignUp);
 
 const useStyles = makeStyles((theme) => ({
   form: {

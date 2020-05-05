@@ -24,7 +24,7 @@ export default {
   },
   h6: {
     color: palette.text.primary,
-    fontWeight: 400,
+    fontWeight: 700,
   },
   subtitle1: {
     color: palette.text.primary,
