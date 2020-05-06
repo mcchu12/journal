@@ -1,23 +1,49 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { signOut } from '../actions';
 
-const Header = () => {
+import {
+  makeStyles,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@material-ui/core';
+
+import PersonIcon from '@material-ui/icons/Person';
+
+const Header = ({ signOut, isAuthenticated }) => {
   const classes = useStyles();
 
   return (
     <AppBar position="fixed" color="inherit" elevation={0}>
       <Toolbar className={classes.toolbar} variant="dense">
-        <Typography variant="h6">Notes</Typography>
+        <Link to="/">
+          <Typography variant="h6">Notes</Typography>
+        </Link>
+        {isAuthenticated && (
+          <IconButton size="small" aria-label="account" onClick={signOut}>
+            <PersonIcon />
+          </IconButton>
+        )}
       </Toolbar>
     </AppBar>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.user.isAuthenticated,
+  };
+};
 
-const useStyles = makeStyles((theme) => ({
+export default connect(mapStateToProps, { signOut })(Header);
+
+const useStyles = makeStyles(() => ({
   toolbar: {
     display: 'flex',
+    justifyContent: 'space-between',
   },
 }));

@@ -1,31 +1,22 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 
-import { fetchUser } from './actions';
+import { verifyUser } from './actions';
 import theme from './theme';
-import { SignIn, SignUp, Header } from './components';
 
-const Home = () => {
-  return <div>Home</div>;
-};
+import Routes from './routes';
 
-const App = ({ fetchUser }) => {
+const App = ({ verifyUser }) => {
   useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
+    verifyUser();
+  }, [verifyUser]);
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      <BrowserRouter>
-        <Route path="/" exact component={Home} />
-        <Route path="/signin" exact component={SignIn} />
-        <Route path="/signup" exact component={SignUp} />
-      </BrowserRouter>
+      <Routes />
     </ThemeProvider>
   );
 };
 
-export default connect(null, { fetchUser })(App);
+export default connect(null, { verifyUser })(App);

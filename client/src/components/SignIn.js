@@ -13,9 +13,16 @@ import {
   Typography,
   Container,
   Button,
+  CircularProgress,
 } from '@material-ui/core';
 
-const SignIn = ({ values, handleChange, handleSubmit }) => {
+const SignIn = ({
+  values,
+  handleChange,
+  handleSubmit,
+  isSigningIn,
+  errMessage,
+}) => {
   const classes = useStyles();
 
   const renderForm = () => {
@@ -44,8 +51,23 @@ const SignIn = ({ values, handleChange, handleSubmit }) => {
           color="secondary"
         />
 
-        <Button type="submit" variant="contained" color="primary" fullWidth>
-          Sign In
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          disabled={isSigningIn}
+          startIcon={
+            isSigningIn && (
+              <CircularProgress
+                size={24}
+                variant="indeterminate"
+                color="inherit"
+              />
+            )
+          }
+        >
+          {isSigningIn ? 'Signing In' : 'Sign In'}
         </Button>
       </form>
     );
@@ -75,8 +97,15 @@ const SignIn = ({ values, handleChange, handleSubmit }) => {
   );
 };
 
+const mapStateToProps = (state) => {
+  return {
+    isSigningIn: state.auth.signIn.isSigningIn,
+    errMessage: state.auth.signIn.signInErr,
+  };
+};
+
 export default compose(
-  connect(null, { signIn }),
+  connect(mapStateToProps, { signIn }),
   withFormik({
     mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: (values, form) => {

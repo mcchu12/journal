@@ -23,13 +23,14 @@ mongoose.connect(keys.mongoURI, {
   useUnifiedTopology: true,
 });
 
-// Configure passport middleware
+// Configure passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./services/authStrategy')(passport);
 
-require('./routes/auth')(app);
+// Routes
+require('./routes/authRoutes')(app);
 
 // Serve static files for react app in production
 if (process.env.NODE_ENV === 'production') {
