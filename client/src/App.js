@@ -8,9 +8,9 @@ import theme from './theme';
 import Routes from './routes';
 
 const App = ({ verifyUser }) => {
-  useEffect(() => {
-    verifyUser();
-  }, [verifyUser]);
+  // useEffect(() => {
+  //   verifyUser();
+  // }, [verifyUser]);
 
   return (
     <ThemeProvider theme={theme}>

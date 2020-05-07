@@ -15,7 +15,7 @@ const initialState = {
     isSigningUp: false,
     signUpErr: '',
   },
-  isVerifying: true,
+  isVerifying: false, // todo change back to true
   user: {
     info: null,
     isAuthenticated: false,

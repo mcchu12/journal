@@ -37,7 +37,7 @@ export default {
     color: palette.text.primary,
   },
   body2: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
   },
   button: {
     color: palette.text.primary,

@@ -15,7 +15,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 
-const SignUp = ({
+const _SignUp = ({
   values,
   handleChange,
   handleSubmit,
@@ -108,7 +108,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default compose(
+export const SignUp = compose(
   connect(mapStateToProps, { signUp }),
   withFormik({
     mapPropsToValues: () => ({ name: '', email: '', password: '' }),
@@ -117,7 +117,7 @@ export default compose(
       form.setSubmitting(false);
     },
   })
-)(SignUp);
+)(_SignUp);
 
 const useStyles = makeStyles((theme) => ({
   form: {

@@ -14,7 +14,7 @@ import {
 
 import PersonIcon from '@material-ui/icons/Person';
 
-const Header = ({ signOut, isAuthenticated }) => {
+const _Header = ({ signOut, isAuthenticated }) => {
   const classes = useStyles();
 
   return (
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { signOut })(Header);
+export const Header = connect(mapStateToProps, { signOut })(_Header);
 
 const useStyles = makeStyles(() => ({
   toolbar: {

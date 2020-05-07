@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Box, CircularProgress } from '@material-ui/core';
 
-const Loader = () => {
+const _Loader = () => {
   return (
     <Box
       height="100%"
@@ -15,4 +15,4 @@ const Loader = () => {
   );
 };
 
-export default memo(Loader);
+export const Loader = memo(_Loader);

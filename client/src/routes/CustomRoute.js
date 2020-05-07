@@ -4,7 +4,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { Loader } from '../components';
 
-const PrivateRoute = (props) => {
+const CustomRoute = (props) => {
   const {
     component: Component,
     isAuthenticated,
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(PrivateRoute);
+export default connect(mapStateToProps, {})(CustomRoute);
