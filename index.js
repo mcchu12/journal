@@ -4,6 +4,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
+const noteRoutes = require('./routes/noteRoutes');
 
 // Initialize app
 const app = express();
@@ -31,6 +32,7 @@ require('./services/authStrategy')(passport);
 
 // Routes
 require('./routes/authRoutes')(app);
+app.use('/api', noteRoutes);
 
 // Serve static files for react app in production
 if (process.env.NODE_ENV === 'production') {

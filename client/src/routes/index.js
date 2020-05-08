@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
-import { BrowserRouter, Switch, Route as TempRoute } from 'react-router-dom';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import Route from './CustomRoute';
 
 import { SignIn, SignUp, Header, Dashboard } from '../components';
@@ -15,7 +15,7 @@ const Routes = () => {
       <main className={classes.main}>
         <Switch>
           {/* Todo change route  */}
-          <TempRoute path="/" exact component={Dashboard} />
+          <Route path="/" exact privateRoute component={Dashboard} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
         </Switch>

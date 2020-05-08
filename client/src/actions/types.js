@@ -17,3 +17,9 @@ export const verifyUserActions = {
   success: 'VERIFY_USER_SUCCESS',
   failure: 'VERIFY_USER_FAILURE',
 };
+
+export const addNoteActions = {
+  request: 'ADD_NOTE_REQUEST',
+  success: 'ADD_NOTE_SUCCESS',
+  failure: 'ADD_NOTE_FAILURE',
+};
