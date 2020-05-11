@@ -20,7 +20,7 @@ export default {
   },
   h5: {
     color: palette.text.primary,
-    fontWeight: 400,
+    fontWeight: 600,
   },
   h6: {
     color: palette.text.primary,

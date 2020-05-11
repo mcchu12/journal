@@ -3,7 +3,7 @@ import { colors } from '@material-ui/core';
 const white = '#FFFFFF';
 const black = '#000000';
 const grey = '#D1D1D1';
-const lightGrey = '#F5F5F5';
+const lightGrey = '#C5C5C5';
 const darkGreen = '#434A3B';
 const sugarYellow = '#D1B58C';
 const darkYellow = '#C3B0A8';

@@ -23,3 +23,21 @@ export const addNoteActions = {
   success: 'ADD_NOTE_SUCCESS',
   failure: 'ADD_NOTE_FAILURE',
 };
+
+export const saveNoteActions = {
+  request: 'SAVE_NOTE_REQUEST',
+  success: 'SAVE_NOTE_SUCCESS',
+  failure: 'SAVE_NOTE_FAILURE',
+};
+
+export const getNoteActions = {
+  request: 'GET_NOTE_REQUEST',
+  success: 'GET_NOTE_SUCCESS',
+  failure: 'GET_NOTE_FAILURE',
+};
+
+export const deleteNoteActions = {
+  request: 'DELETE_NOTE_REQUEST',
+  success: 'DELETE_NOTE_SUCCESS',
+  failure: 'DELETE_NOTE_FAILURE',
+};

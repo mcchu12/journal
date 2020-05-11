@@ -9,14 +9,34 @@ import { useField } from 'formik';
 import { makeStyles } from '@material-ui/core';
 
 export const EditableField = forwardRef(
-  ({ placeholder, className, name, singleLine }, ref) => {
+  ({ placeholder, className, name, singleLine, editable = false }, ref) => {
     const [, meta, helpers] = useField(name);
-    const [empty, setEmpty] = useState(true);
+    const [isEmpty, setIsEmpty] = useState(true);
     const elRef = useRef();
 
-    const classes = useStyles({ empty });
+    const classes = useStyles({ isEmpty });
 
+    useImperativeHandle(ref, () => ({
+      // Reset field
+      reset() {
+        helpers.setValue('');
+        elRef.current.innerText = '';
+        if (!isEmpty) {
+          setIsEmpty(true);
+        }
+      },
+
+      // Get field value
+      getValue() {
+        return elRef.current.innerHTML.toString();
+      },
+    }));
+
+    // Set field configs
     useEffect(() => {
+      if (meta.initialValue) {
+        setIsEmpty(false);
+      }
       if (singleLine) {
         const el = elRef.current;
 
@@ -34,26 +54,16 @@ export const EditableField = forwardRef(
       }
 
       return;
-    }, [singleLine]);
-
-    useImperativeHandle(ref, () => ({
-      reset() {
-        helpers.setValue('');
-        elRef.current.innerText = '';
-        if (!empty) {
-          setEmpty(true);
-        }
-      },
-    }));
+    }, [singleLine, meta.initialValue]);
 
     const onInput = (e) => {
       const value = e.currentTarget.innerText;
       helpers.setValue(e.currentTarget.innerText);
 
-      if (!value && !empty) {
-        setEmpty(true);
-      } else if (value && empty) {
-        setEmpty(false);
+      if (!value && !isEmpty) {
+        setIsEmpty(true);
+      } else if (value && isEmpty) {
+        setIsEmpty(false);
       }
     };
 
@@ -62,7 +72,7 @@ export const EditableField = forwardRef(
         <div>{placeholder}</div>
         <div
           ref={elRef}
-          contentEditable
+          contentEditable={editable}
           role="textbox"
           aria-label={placeholder}
           aria-multiline
@@ -86,8 +96,12 @@ const useStyles = makeStyles((theme) => ({
 
     '& > div:first-child': {
       position: 'absolute',
-      zIndex: -1,
-      display: (props) => (props.empty ? 'block' : 'none'),
+      display: (props) => (props.isEmpty ? 'block' : 'none'),
+    },
+
+    '& > div:last-child': {
+      position: 'relative',
+      zIndex: 5,
     },
   },
 }));

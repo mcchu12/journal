@@ -14,10 +14,10 @@ const Routes = () => {
       <Header />
       <main className={classes.main}>
         <Switch>
-          {/* Todo change route  */}
-          <Route path="/" exact privateRoute component={Dashboard} />
-          <Route path="/signin" exact component={SignIn} />
-          <Route path="/signup" exact component={SignUp} />
+          <Route path="/" privateRoute component={Dashboard} />
+
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
         </Switch>
       </main>
     </BrowserRouter>

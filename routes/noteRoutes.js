@@ -19,10 +19,37 @@ router.post('/add-note', requireLogin, async (req, res) => {
   res.send(note);
 });
 
-router.get('/get-notes', requireLogin, async (req, res, next) => {
+router.put('/save-note/:id', requireLogin, async (req, res) => {
+  const { title, content } = req.body;
+
+  const note = await Note.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        title: title,
+        content: content,
+      },
+      $currentDate: {
+        lastEdited: true,
+      },
+    },
+    { new: true, useFindAndModify: false }
+  );
+
+  res.status(200).send(note);
+});
+
+router.get('/get-notes', requireLogin, async (req, res) => {
   const notes = await Note.find({ author: req.user._id });
 
-  res.send(notes);
+  res.status(200).send(notes);
+});
+
+router.delete('/delete-note/:id', requireLogin, async (req, res) => {
+  const note = await Note.findByIdAndDelete(req.params.id);
+  console.log(note);
+
+  res.status(200).send(note._id);
 });
 
 module.exports = router;
