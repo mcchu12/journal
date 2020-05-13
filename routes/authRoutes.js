@@ -3,7 +3,6 @@ const passport = require('passport');
 const User = require('../models/User');
 
 router.get('/current_user', (req, res) => {
-  console.log('get work');
   res.send(req.user);
 });
 
