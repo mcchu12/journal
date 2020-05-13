@@ -217,6 +217,7 @@ const useStyles = makeStyles((theme) => ({
   },
   date: {
     textAlign: 'right',
+    opacity: 0.7,
   },
   toolbar: {
     marginTop: theme.spacing(1),

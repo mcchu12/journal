@@ -14,12 +14,15 @@ This app was created for the Chingu pre-work solo project. It is a partial clone
 
 - **Input Field:** Inputs are content-editable div so they will work with HTML Markup.
 
+- **PWA:** Progressive Web App
+
 ## Tech Used / Dependencies
 
-- Frontend: This is app is created with React, along with other libaries:
+- Frontend: This is app is created with React and Redux, along with other libaries:
 
-  - Material UI
-  - React Masonry Component
+  - [Material UI](https://material-ui.com/)
+  - [React Masonry Component](https://www.npmjs.com/package/react-masonry-component)
+  - [Formik](https://jaredpalmer.com/formik)
 
 - Backend: Built with NodeJS, Express, MongoDB / Mongoose
 
