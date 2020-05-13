@@ -5,6 +5,7 @@ import {
   saveNoteActions,
   getNoteActions,
   deleteNoteActions,
+  signOutAction,
 } from '../actions/types';
 
 const initialState = {
@@ -21,6 +22,8 @@ const notes = (state = initialState.notes, action) => {
       return { ..._.mapKeys(action.payload, '_id') };
     case deleteNoteActions.success:
       return _.omit(state, action.payload);
+    case signOutAction:
+      return {};
     default:
       return state;
   }

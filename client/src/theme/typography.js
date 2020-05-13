@@ -43,7 +43,7 @@ export default {
     color: palette.text.primary,
   },
   caption: {
-    color: palette.text.secondary,
+    color: palette.text.primary,
   },
   overline: {
     color: palette.text.secondary,

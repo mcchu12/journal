@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { useHistory, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
-import { makeStyles, Button, IconButton } from '@material-ui/core';
+import { makeStyles, Button, IconButton, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import { saveNote, deleteNote, addNote } from '../../actions';
@@ -15,6 +15,7 @@ const _NoteCard = ({
   setFocusOnClick,
   initialFocus = false,
   editable = true,
+  showDate = false,
   showTitle = false,
   showContent = true,
   alwaysShowToolbar = true,
@@ -117,6 +118,12 @@ const _NoteCard = ({
     if (submitCallback) submitCallback();
   };
 
+  // Parse date
+  const parseDate = (date) => {
+    const current = new Date(date).toDateString().split(' ');
+    return [current[1], current[2]].join(' ');
+  };
+
   const renderForm = () => {
     return (
       <Formik
@@ -143,10 +150,17 @@ const _NoteCard = ({
             />
           </div>
 
+          {note.lastEdited && showDate && (
+            <div className={classes.date}>
+              <Typography variant="caption">
+                Edited {parseDate(note.lastEdited)}
+              </Typography>
+            </div>
+          )}
           {(alwaysShowToolbar || isFocused) && (
             <div className={classes.toolbar}>
               {showTools && (
-                <span className={classes.tools}>
+                <div className={classes.tools}>
                   <IconButton
                     aria-label="delete"
                     size="small"
@@ -154,7 +168,7 @@ const _NoteCard = ({
                   >
                     <DeleteIcon fontSize="small" />
                   </IconButton>
-                </span>
+                </div>
               )}
               {isFocused && (
                 <Button color="secondary" type="submit">
@@ -200,6 +214,9 @@ const useStyles = makeStyles((theme) => ({
     transition: 'box-shadow 200ms ease-out',
     backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
+  },
+  date: {
+    textAlign: 'right',
   },
   toolbar: {
     marginTop: theme.spacing(1),

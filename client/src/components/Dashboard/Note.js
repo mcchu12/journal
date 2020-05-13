@@ -23,6 +23,7 @@ export const _Note = ({
         note={note}
         initialFocus
         submitCallback={() => history.goBack()}
+        showDate
       />
     </Dialog>
   );
