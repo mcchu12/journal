@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withFormik } from 'formik';
 import { Link } from 'react-router-dom';
 
-import { signIn } from '../actions';
+import { signIn, clearSignInErr } from '../actions';
 
 import {
   makeStyles,
@@ -16,12 +16,15 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 
+import { Alert } from '@material-ui/lab';
+
 const _SignIn = ({
   values,
   handleChange,
   handleSubmit,
   isSigningIn,
   errMessage,
+  clearSignInErr,
 }) => {
   const classes = useStyles();
 
@@ -85,6 +88,11 @@ const _SignIn = ({
         <Typography variant="h5" align="center">
           Sign In
         </Typography>
+        {errMessage && (
+          <Alert severity="error" onClose={() => clearSignInErr()}>
+            {errMessage}
+          </Alert>
+        )}
         {renderForm()}
 
         <Link to="/signup">
@@ -105,7 +113,7 @@ const mapStateToProps = (state) => {
 };
 
 export const SignIn = compose(
-  connect(mapStateToProps, { signIn }),
+  connect(mapStateToProps, { signIn, clearSignInErr }),
   withFormik({
     mapPropsToValues: () => ({ email: '', password: '' }),
     handleSubmit: (values, form) => {

@@ -42,6 +42,8 @@ const signIn = (state = initialState.signIn, action) => {
       return { ...state, isSigningIn: false };
     case signInActions.failure:
       return { ...state, isSigningIn: false, signInErr: action.payload };
+    case signInActions.clearErr:
+      return { ...state, signInErr: '' };
     default:
       return state;
   }
@@ -55,6 +57,8 @@ const signUp = (state = initialState.signUp, action) => {
       return { ...state, isSigningUp: false };
     case signUpActions.failure:
       return { ...state, isSigningUp: false, signUpErr: action.payload };
+    case signUpActions.clearErr:
+      return { ...state, signUpErr: '' };
     default:
       return state;
   }

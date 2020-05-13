@@ -18,7 +18,7 @@ const notes = (state = initialState.notes, action) => {
       return { ...state, [action.payload._id]: { ...action.payload } };
 
     case getNoteActions.success:
-      return { ...state, ..._.mapKeys(action.payload, '_id') };
+      return { ..._.mapKeys(action.payload, '_id') };
     case deleteNoteActions.success:
       return _.omit(state, action.payload);
     default:

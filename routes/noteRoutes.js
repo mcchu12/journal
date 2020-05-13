@@ -1,10 +1,8 @@
 const router = require('express').Router();
 const Note = require('../models/Note');
-const User = require('../models/User');
 const requireLogin = require('../middlewares/requireLogin');
 
 router.post('/add-note', requireLogin, async (req, res) => {
-  console.log(req.body);
   const { title, content } = req.body;
 
   const note = new Note({
@@ -47,7 +45,6 @@ router.get('/get-notes', requireLogin, async (req, res) => {
 
 router.delete('/delete-note/:id', requireLogin, async (req, res) => {
   const note = await Note.findByIdAndDelete(req.params.id);
-  console.log(note);
 
   res.status(200).send(note._id);
 });

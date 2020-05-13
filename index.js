@@ -5,6 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 const noteRoutes = require('./routes/noteRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Initialize app
 const app = express();
@@ -31,7 +32,7 @@ app.use(passport.session());
 require('./services/authStrategy')(passport);
 
 // Routes
-require('./routes/authRoutes')(app);
+app.use('/api', authRoutes);
 app.use('/api', noteRoutes);
 
 // Serve static files for react app in production

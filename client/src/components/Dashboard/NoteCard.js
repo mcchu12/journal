@@ -20,7 +20,9 @@ const _NoteCard = ({
   alwaysShowToolbar = true,
   showTools = true,
   resetOnSubmit = false,
+  maxHeight,
   elevation = 0,
+  submitCallback,
   addNote,
   saveNote,
   deleteNote,
@@ -42,6 +44,7 @@ const _NoteCard = ({
     isFocused,
     isHovered,
     elevation,
+    maxHeight,
   });
 
   useEffect(() => {
@@ -103,14 +106,15 @@ const _NoteCard = ({
       // Update if note already exist
       if (note._id) {
         saveNote(note._id, newNote);
-        return;
+      } else {
+        // Ow create new note
+        addNote(newNote);
       }
-
-      // Ow create new note
-      addNote(newNote);
     }
 
     if (resetOnSubmit) resetForm();
+    if (setFocusOnClick) setFocus(false);
+    if (submitCallback) submitCallback();
   };
 
   const renderForm = () => {
@@ -194,6 +198,8 @@ const useStyles = makeStyles((theme) => ({
         ? theme.shadows[2]
         : 'none',
     transition: 'box-shadow 200ms ease-out',
+    backgroundColor: theme.palette.background.paper,
+    overflow: 'auto',
   },
   toolbar: {
     marginTop: theme.spacing(1),
@@ -221,5 +227,8 @@ const useStyles = makeStyles((theme) => ({
     display: ({ showContent }) => (showContent ? 'block' : 'none'),
     ...theme.typography.body2,
     fontWeight: 600,
+    textOverflow: 'ellipsis',
+    maxHeight: ({ maxHeight }) => maxHeight,
+    overflow: ({ maxHeight }) => (maxHeight ? 'hidden' : 'visible'),
   },
 }));

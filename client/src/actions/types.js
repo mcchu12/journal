@@ -2,12 +2,14 @@ export const signInActions = {
   request: 'SIGN_IN_REQUEST',
   success: 'SIGN_IN_SUCCESS',
   failure: 'SIGN_IN_FAILURE',
+  clearErr: 'SIGN_IN_CLEAR_ERR',
 };
 
 export const signUpActions = {
   request: 'SIGN_UP_REQUEST',
   success: 'SIGN_UP_SUCCESS',
   failure: 'SIGN_UP_FAILURE',
+  clearErr: 'SIGN_UP_CLEAR_ERR',
 };
 
 export const signOutAction = 'SIGN_OUT';

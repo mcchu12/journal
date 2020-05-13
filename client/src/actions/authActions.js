@@ -21,6 +21,10 @@ export const signIn = (user) => async (dispatch) => {
   }
 };
 
+export const clearSignInErr = () => {
+  return { type: signInActions.clearErr };
+};
+
 export const signUp = (user) => async (dispatch) => {
   dispatch({ type: signUpActions.request });
 
@@ -34,6 +38,10 @@ export const signUp = (user) => async (dispatch) => {
       payload: err.response.data.message,
     });
   }
+};
+
+export const clearSignUpErr = () => {
+  return { type: signUpActions.clearErr };
 };
 
 export const verifyUser = () => async (dispatch) => {
