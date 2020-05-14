@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import _ from 'lodash';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { makeStyles, Button, IconButton, Typography } from '@material-ui/core';
@@ -38,7 +38,6 @@ const _NoteCard = ({
   const [isFocused, setFocus] = useState(initialFocus);
 
   const history = useHistory();
-  const { pathname } = useLocation();
   const classes = useStyles({
     showTitle: showTitle && note.title,
     showContent: showContent || note.content,
@@ -91,8 +90,7 @@ const _NoteCard = ({
 
   const handleDelete = (id) => {
     deleteNote(id);
-    if (pathname === '/') return;
-    history.goBack();
+    history.push('/');
   };
 
   // Handle form submit

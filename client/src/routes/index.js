@@ -28,8 +28,8 @@ export default Routes;
 const useStyles = makeStyles((theme) => ({
   main: {
     paddingTop: 48, // equal to appbar height
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
 
     [theme.breakpoints.up('sm')]: {
       paddingLeft: theme.spacing(3),

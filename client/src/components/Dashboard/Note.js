@@ -14,7 +14,7 @@ export const _Note = ({
     <Dialog
       fullWidth
       maxWidth="sm"
-      onClose={() => history.goBack()}
+      onClose={() => history.push('/')}
       open={true}
       classes={{ paper: classes.paper }}
     >
@@ -22,7 +22,7 @@ export const _Note = ({
         editable
         note={note}
         initialFocus
-        submitCallback={() => history.goBack()}
+        submitCallback={() => history.push('/')}
         showDate
       />
     </Dialog>
