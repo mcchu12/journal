@@ -18,7 +18,6 @@ app.use(
     keys: [keys.cookieKey],
   })
 );
-
 // Connect mongoose
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
