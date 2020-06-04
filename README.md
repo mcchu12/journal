@@ -28,7 +28,9 @@ This app was created for the Chingu pre-work solo project. It is a partial clone
 
 - Fonts: Nunito from [Google Fonts](https://fonts.google.com/)
 
-### In the project directory, you can run:
+### In the project directory, run:
+
+`npm install` for both root and /client directory
 
 `npm run dev`
 
